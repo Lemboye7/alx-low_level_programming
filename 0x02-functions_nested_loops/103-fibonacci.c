@@ -1,24 +1,29 @@
-vi 102-fibonacci.c
 #include <stdio.h>
+
 /**
-*main - Prints the add of the Fibonacci numbers
-*
-* Return: Always 0.
-*/
+ * main - Prints the sum of even-valued Fibonacci sequence
+ *        terms not exceeding 4000000.
+ *
+ * Return: Always 0.
+ */
 int main(void)
 {
-int c;
-long int n1, n2, fn;
-n1 = 1;
-n2 = 2;
-printf("%ld, %ld", n1, n2);
-for (c = 0; c < 48; c++)
-{
-fn = n1 + n2;
-printf(", %ld", fn);
-n1 = n2;
-n2 = fn;
-}
-printf("\n");
-return (0);
+	unsigned long fib1 = 0, fib2 = 1, fibsum;
+	float tot_sum;
+
+	while (1)
+	{
+		fibsum = fib1 + fib2;
+		if (fibsum > 4000000)
+			break;
+
+		if ((fibsum % 2) == 0)
+			tot_sum += fibsum;
+
+		fib1 = fib2;
+		fib2 = fibsum;
+	}
+	printf("%.0f\n", tot_sum);
+
+	return (0);
 }
